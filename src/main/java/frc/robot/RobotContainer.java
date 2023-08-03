@@ -5,6 +5,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -33,7 +34,8 @@ public class RobotContainer {
   private final Wrist wrist = new Wrist();
 
   // Looks for an SNES controller on port 0.
-  private final SNESController snesController = new SNESController(0);
+  private final XboxController xboxController = new XboxController(0);
+  private final SNESController snesController = new SNESController(1);
 
   // NOTE: The I/O pin functionality of the 5 exposed I/O pins depends on the hardware "overlay"
   // that is specified when launching the wpilib-ws server on the Romi raspberry pi.
@@ -66,14 +68,14 @@ public class RobotContainer {
     cButton.onFalse(new PrintCommand("Button C Released"));
 
     // Configures buttons
-    new JoystickButton(snesController, Button.LeftBumper.value).whileTrue(new ArmDown(arm));
-    new JoystickButton(snesController, Button.RightBumper.value).whileTrue(new ArmUp(arm));
-    new JoystickButton(snesController, Button.XButton.value).whileTrue(new WristUp(wrist));
-    new JoystickButton(snesController, Button.YButton.value).whileTrue(new WristDown(wrist));
-    new JoystickButton(snesController, Button.AButton.value).whileTrue(new GripperOpen(gripper));
-    new JoystickButton(snesController, Button.BButton.value).whileTrue(new GripperClose(gripper));
+    new JoystickButton(xboxController, Button.LeftBumper.value).whileTrue(new ArmDown(arm));
+    new JoystickButton(xboxController, Button.RightBumper.value).whileTrue(new ArmUp(arm));
+    new JoystickButton(xboxController, Button.XButton.value).whileTrue(new WristUp(wrist));
+    new JoystickButton(xboxController, Button.YButton.value).whileTrue(new WristDown(wrist));
+    new JoystickButton(xboxController, Button.AButton.value).whileTrue(new GripperOpen(gripper));
+    new JoystickButton(xboxController, Button.BButton.value).whileTrue(new GripperClose(gripper));
 
-    new JoystickButton(snesController, Button.SelectButton.value).onTrue(new Disable()); // WIP -- Possible kill switch for competition bots
+    new JoystickButton(xboxController, Button.SelectButton.value).onTrue(new Disable()); // WIP -- Possible kill switch for competition bots
   }
 
   /**
@@ -90,7 +92,11 @@ public class RobotContainer {
    *
    * @return the command to run in teleop
    */
-  public Command getArcadeDriveCommand() {
+  public Command getSNESArcadeDriveCommand() {
     return new ArcadeDrive(drivetrain, () -> -snesController.getRawAxis(1), () -> -snesController.getRawAxis(0));
+  }
+
+  public Command getXBOXArcadeDriveCommand() {
+    return new ArcadeDrive(drivetrain, () -> -xboxController.getLeftY(), () -> -xboxController.getRightX());
   }
 }

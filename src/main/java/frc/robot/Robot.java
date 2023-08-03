@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
     }
 
     // This gets the teleop command from the RobotContainer class.
-    teleopCommand = robotContainer.getArcadeDriveCommand();
+    teleopCommand = robotContainer.getXBOXArcadeDriveCommand();
 
     // This starts the teleop command.
     if (teleopCommand != null) {
