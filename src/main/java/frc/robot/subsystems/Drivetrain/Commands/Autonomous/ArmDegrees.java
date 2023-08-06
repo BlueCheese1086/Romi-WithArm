@@ -13,7 +13,7 @@ public class ArmDegrees extends CommandBase {
   private final Arm arm;
 
   /**
-   * Creates a new DriveDistance command. This command will drive your your robot for a desired number of inches at a desired speed.
+   * Creates a new ArmDegrees command. This command will move the arm of your robot to a desired angle.
    *
    * @param degrees The number of degrees that the arm will be set to.
    * @param arm The arm subsystem on which this command will run.
@@ -24,21 +24,21 @@ public class ArmDegrees extends CommandBase {
     addRequirements(arm);
   }
 
-  /** Called when the command is initially scheduled. */
+  /** This function is called when the command is initially scheduled. */
   @Override
   public void initialize() {}
 
-  /** Called every time the scheduler runs while the command is scheduled. */
+  /** This function is called every time the scheduler runs while the command is scheduled. */
   @Override
   public void execute() {
     arm.setAngle(degrees);
   }
 
-  /** Called once the command ends or is interrupted. */
+  /** This function is called once the command ends or is interrupted. */
   @Override
   public void end(boolean interrupted) {}
 
-  /** Returns true when the command should end. */
+  /** This function returns true when the command should end. */
   @Override
   public boolean isFinished() {
     return arm.getAngle() == degrees;

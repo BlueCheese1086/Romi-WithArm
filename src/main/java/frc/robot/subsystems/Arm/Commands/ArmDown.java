@@ -29,12 +29,7 @@ public class ArmDown extends CommandBase {
   // Called every time the scheduler runs the command while it is scheduled.
   @Override
   public void execute() {
-    double angle = arm.getAngle();
-    if(angle + Motors.INCREMENT > 90) {
-      arm.setAngle(angle);
-    } else {
-      arm.setAngle(arm.getAngle() + Motors.INCREMENT);
-    }
+    arm.setAngle(arm.getAngle() + Motors.INCREMENT);
   }
 
   // Called once the command ends or is interrupted.

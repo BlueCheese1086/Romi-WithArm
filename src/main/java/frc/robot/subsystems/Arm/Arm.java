@@ -4,8 +4,8 @@
 
 package frc.robot.subsystems.Arm;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.RobotMap;
 
@@ -23,7 +23,7 @@ public class Arm extends SubsystemBase {
     arm.setAngle(angle);
   }
 
-  /** Gets the angle of the arm */
+  /** @return The current angle of the arm */
   public double getAngle() {
     return arm.getAngle();
   }

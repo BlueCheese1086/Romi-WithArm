@@ -29,12 +29,7 @@ public class WristUp extends CommandBase {
   // Called every time the scheduler runs the command while it is scheduled.
   @Override
   public void execute() {
-    double angle = wrist.getAngle();
-    if(angle + Motors.INCREMENT > 90) {
-      wrist.setAngle(angle);
-    } else {
-      wrist.setAngle(wrist.getAngle() + Motors.INCREMENT);
-    }
+    wrist.setAngle(wrist.getAngle() + Motors.INCREMENT);
   }
 
   // Called once the command ends or is interrupted.

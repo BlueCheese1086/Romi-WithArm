@@ -29,12 +29,7 @@ public class GripperClose extends CommandBase {
   // Called every time the scheduler runs the command while it is scheduled.
   @Override
   public void execute() {
-    double angle = gripper.getAngle();
-    if(angle + Motors.INCREMENT > 90) {
-      gripper.setAngle(angle);
-    } else {
-      gripper.setAngle(gripper.getAngle() + Motors.INCREMENT);
-    }
+    gripper.setAngle(gripper.getAngle() + Motors.INCREMENT);
   }
 
   // Called when the command ends or is interrupted.

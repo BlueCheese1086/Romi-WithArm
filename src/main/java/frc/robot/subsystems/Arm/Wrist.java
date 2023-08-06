@@ -4,13 +4,13 @@
 
 package frc.robot.subsystems.Arm;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.RobotMap;
 
 public class Wrist extends SubsystemBase {
-  // Creates servo
+  // Creates the servo
   private final Servo wrist = new Servo(RobotMap.WRISTSERVO);
 
   /** Creates a new Wrist. */
@@ -23,12 +23,12 @@ public class Wrist extends SubsystemBase {
     wrist.setAngle(angle);
   }
 
-  /** Gets the angle of the wrist */
+  /** @return The current angle of the wrist */
   public double getAngle() {
     return wrist.getAngle();
   }
 
-  /** This method will be called once per scheduler run */
+  // This method will be called once per scheduler run
   @Override
   public void periodic() {}
 }

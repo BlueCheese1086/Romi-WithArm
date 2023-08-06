@@ -5,12 +5,13 @@
 package frc.robot.subsystems.Drivetrain.Commands.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+
 import frc.robot.subsystems.Drivetrain.Drivetrain;
 import frc.robot.subsystems.Arm.*;
 
 public class Autonomous extends SequentialCommandGroup {
   /**
-   * Creates a new Autonomous Drive based on distance.
+   * Creates a new Autonomous Drive command sequence.
    *
    * @param drivetrain The drivetrain subsystem on which this command will run.
    * @param arm The arm subsystem on which this command will run.
@@ -18,6 +19,7 @@ public class Autonomous extends SequentialCommandGroup {
    * @param wrist The wrist subsystem on which this command will run.
    */
   public Autonomous(Drivetrain drivetrain, Arm arm, Gripper gripper, Wrist wrist) {
+    // Adds a sequence of commands to run.
     addCommands(
       new DriveDistance(-1, 10, drivetrain),
       new TurnDegrees(-1, 180, drivetrain),
@@ -26,7 +28,7 @@ public class Autonomous extends SequentialCommandGroup {
       new ArmDegrees(170, arm),
       new GripperDegrees(15, gripper),
       new DriveDistance(1, 6, drivetrain),
-      new GripperDegrees(90, gripper)
+      new WristDegrees(90, wrist)
     );
   }
 }

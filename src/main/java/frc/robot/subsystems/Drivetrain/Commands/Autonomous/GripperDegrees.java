@@ -13,9 +13,9 @@ public class GripperDegrees extends CommandBase {
   private final Gripper gripper;
 
   /**
-   * Creates a new GripperDegrees command. This command will open or close the gripper for a desired number of degrees.
+   * Creates a new gripperDegrees command. This command will move the gripper of your robot to a desired angle.
    *
-   * @param degrees The number of degrees the gripper will move.
+   * @param degrees The number of degrees that the gripper will be set to.
    * @param gripper The gripper subsystem on which this command will run.
    */
   public GripperDegrees(double degrees, Gripper gripper) {
@@ -24,21 +24,21 @@ public class GripperDegrees extends CommandBase {
     addRequirements(gripper);
   }
 
-  /** Called when the command is initially scheduled. */
+  /** This function is called when the command is initially scheduled. */
   @Override
   public void initialize() {}
 
-  /** Called every time the scheduler runs while the command is scheduled. */
+  /** This function is called every time the scheduler runs while the command is scheduled. */
   @Override
   public void execute() {
     gripper.setAngle(degrees);
   }
 
-  /** Called once the command ends or is interrupted. */
+  /** This function is called once the command ends or is interrupted. */
   @Override
   public void end(boolean interrupted) {}
 
-  /** Returns true when the command should end. */
+  /** This function returns true when the command should end. */
   @Override
   public boolean isFinished() {
     return gripper.getAngle() == degrees;
