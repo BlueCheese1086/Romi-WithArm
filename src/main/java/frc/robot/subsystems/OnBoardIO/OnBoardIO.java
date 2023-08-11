@@ -138,9 +138,4 @@ public class OnBoardIO extends SubsystemBase {
   public void setYellowLed(boolean value) {
     yellowLed.set(value);
   }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
 }

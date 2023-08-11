@@ -5,20 +5,18 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
-import frc.robot.subsystems.Arm.*;
-import frc.robot.subsystems.Arm.Commands.*;
-import frc.robot.subsystems.Drivetrain.*;
-import frc.robot.subsystems.Drivetrain.Commands.Autonomous.*;
-import frc.robot.subsystems.Drivetrain.Commands.TeleOp.*;
-import frc.robot.subsystems.OnBoardIO.*;
-import frc.robot.subsystems.OnBoardIO.OnBoardIO.ChannelMode;
 import frc.robot.SNESController.Button;
+import frc.robot.subsystems.Arm.Arm;
+import frc.robot.subsystems.Arm.Commands.*;
+import frc.robot.subsystems.Drivetrain.Drivetrain;
+import frc.robot.subsystems.Drivetrain.Commands.*;
+import frc.robot.subsystems.OnBoardIO.OnBoardIO;
+import frc.robot.subsystems.OnBoardIO.Commands.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,14 +26,11 @@ import frc.robot.SNESController.Button;
 public class RobotContainer {
   // Creates the various subsystems for the robot.
   private final Drivetrain drivetrain = new Drivetrain();
-  private final OnBoardIO onboardIO = new OnBoardIO(ChannelMode.INPUT, ChannelMode.INPUT);
+  private final OnBoardIO onboardIO = new OnBoardIO(OnBoardIO.ChannelMode.INPUT, OnBoardIO.ChannelMode.INPUT);
   private final Arm arm = new Arm();
-  private final Gripper gripper = new Gripper();
-  private final Wrist wrist = new Wrist();
 
   // Looks for an SNES controller on port 0.
-  private final XboxController xboxController = new XboxController(0);
-  private final SNESController snesController = new SNESController(1);
+  private final SNESController snesController = new SNESController(0);
 
   // NOTE: The I/O pin functionality of the 5 exposed I/O pins depends on the hardware "overlay"
   // that is specified when launching the wpilib-ws server on the Romi raspberry pi.
@@ -53,50 +48,47 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Sets the default command for the Romi.
-    //drivetrain.setDefaultCommand(getArcadeDriveCommand());
-
     // Example of how to use the onboard IO
     Trigger aButton = new Trigger(onboardIO::getButtonAPressed);
     Trigger bButton = new Trigger(onboardIO::getButtonBPressed);
     Trigger cButton = new Trigger(onboardIO::getButtonCPressed);
     aButton.onTrue(new PrintCommand("Button A Pressed"));
+    aButton.onTrue(new SetYellow(onboardIO, true));
     aButton.onFalse(new PrintCommand("Button A Released"));
+    aButton.onFalse(new SetYellow(onboardIO, false));
     bButton.onTrue(new PrintCommand("Button B Pressed"));
+    bButton.onTrue(new SetYellow(onboardIO, true));
     bButton.onFalse(new PrintCommand("Button B Released"));
+    bButton.onFalse(new SetYellow(onboardIO, false));
     cButton.onTrue(new PrintCommand("Button C Pressed"));
+    cButton.onTrue(new SetYellow(onboardIO, true));
     cButton.onFalse(new PrintCommand("Button C Released"));
+    cButton.onFalse(new SetYellow(onboardIO, false));
 
     // Configures buttons
-    new JoystickButton(xboxController, Button.LeftBumper.value).whileTrue(new ArmDown(arm));
-    new JoystickButton(xboxController, Button.RightBumper.value).whileTrue(new ArmUp(arm));
-    new JoystickButton(xboxController, Button.XButton.value).whileTrue(new WristUp(wrist));
-    new JoystickButton(xboxController, Button.YButton.value).whileTrue(new WristDown(wrist));
-    new JoystickButton(xboxController, Button.AButton.value).whileTrue(new GripperOpen(gripper));
-    new JoystickButton(xboxController, Button.BButton.value).whileTrue(new GripperClose(gripper));
-
-    new JoystickButton(xboxController, Button.SelectButton.value).onTrue(new Disable()); // WIP -- Possible kill switch for competition bots
+    new JoystickButton(snesController, Button.LeftBumper.value).whileTrue(new ArmDown(arm));
+    new JoystickButton(snesController, Button.RightBumper.value).whileTrue(new ArmUp(arm));
+    new JoystickButton(snesController, Button.XButton.value).whileTrue(new WristUp(arm));
+    new JoystickButton(snesController, Button.YButton.value).whileTrue(new WristDown(arm));
+    new JoystickButton(snesController, Button.AButton.value).whileTrue(new GripperOpen(arm));
+    new JoystickButton(snesController, Button.BButton.value).whileTrue(new GripperClose(arm));
   }
 
   /**
    * Passes the autonomous command to the {@link Robot} class.
    *
-   * @return the command to run in autonomous
+   * @return The command to run in autonomous.
    */
   public Command getAutonomousCommand() {
-    return new Autonomous(drivetrain, arm, gripper, wrist);
+    return new Autonomous(drivetrain, arm);
   }
 
   /**
    * Passes the teleop command to the {@link Robot} class.
    *
-   * @return the command to run in teleop
+   * @return The command to run in teleop.
    */
-  public Command getSNESArcadeDriveCommand() {
+  public Command getTeleopCommand() {
     return new ArcadeDrive(drivetrain, () -> -snesController.getRawAxis(1), () -> -snesController.getRawAxis(0));
-  }
-
-  public Command getXBOXArcadeDriveCommand() {
-    return new ArcadeDrive(drivetrain, () -> -xboxController.getLeftY(), () -> -xboxController.getRightX());
   }
 }

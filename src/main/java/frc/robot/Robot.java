@@ -17,87 +17,44 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private Command autonomousCommand;
   private Command teleopCommand;
-  private RobotContainer robotContainer;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
+  /** This function is run when the robot is first started up and should be used for any initialization code. */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.
-    robotContainer = new RobotContainer();
+    // Creates our RobotContainer.
+    RobotContainer robotContainer = new RobotContainer();
+    autonomousCommand = robotContainer.getAutonomousCommand();
+    teleopCommand = robotContainer.getTeleopCommand();
   }
 
-  /**
-   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
-   * that you want ran during disabled, autonomous, teleoperated and test.
-   */
+  /** This function is called every 20 ms, no matter the mode. */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
-    // block in order for anything in the Command-based framework to work.
+    // Runs the scheduler.
     CommandScheduler.getInstance().run();
   }
 
-  /** This function is called once each time the robot enters Disabled mode. */
-  @Override
-  public void disabledInit() {}
-
-  @Override
-  public void disabledPeriodic() {}
-
-  /** This runs the autonomous command selected by your {@link RobotContainer} class. */
+  /** This function is called once when the autonomous mode is initially started. */
   @Override
   public void autonomousInit() {
-    // This ends the teleop command if it is running.
-    if (teleopCommand != null) {
-      teleopCommand.cancel();
-    }
-
-    // This gets the autonomous command from the RobotContainer class.
-    autonomousCommand = robotContainer.getAutonomousCommand();
-
-    // This starts the autonomous command.
-    if (autonomousCommand != null) {
-      autonomousCommand.schedule();
-    }
+    autonomousCommand.schedule();
   }
 
-  /** This function is called periodically during autonomous. */
+  /** This function is called once when the autonomous mode is exited. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousExit() {
+    autonomousCommand.cancel();
+  }
 
-  /** This runs the teleop command selected by your {@link RobotContainer} class. */
+  /** This function is called once when the autonomous mode is initially started. */
   @Override
   public void teleopInit() {
-    // This ends the autonomous command if it is running.
-    if (autonomousCommand != null) {
-      autonomousCommand.cancel();
-    }
-
-    // This gets the teleop command from the RobotContainer class.
-    teleopCommand = robotContainer.getXBOXArcadeDriveCommand();
-
-    // This starts the teleop command.
-    if (teleopCommand != null) {
-      teleopCommand.schedule();
-    }
+    teleopCommand.schedule();
   }
 
-  /** This function is called periodically during operator control. */
+  /** This function is called once when the autonomous mode is exited. */
   @Override
-  public void teleopPeriodic() {}
-
-  @Override
-  public void testInit() {
-    // Cancels all running commands at the start of test mode.
-    CommandScheduler.getInstance().cancelAll();
+  public void teleopExit() {
+    teleopCommand.cancel();
   }
-
-  /** This function is called periodically during test mode. */
-  @Override
-  public void testPeriodic() {}
 }

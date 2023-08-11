@@ -5,11 +5,13 @@
 package frc.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import frc.robot.Constants.*;
+import frc.robot.Constants.Encoders;
+import frc.robot.Constants.Motors;
+import frc.robot.Constants.RobotMap;
 import frc.robot.sensors.RomiGyro;
 
 // Handles the main drivetrain of the romi.

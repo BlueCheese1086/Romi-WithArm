@@ -6,9 +6,9 @@ package frc.robot;
 
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.event.BooleanEvent;
 import edu.wpi.first.wpilibj.event.EventLoop;
+import edu.wpi.first.wpilibj.GenericHID;
 
 /**
  * Handle input from Xbox 360 or Xbox One controllers connected to the Driver Station.

@@ -7,36 +7,28 @@ package frc.robot.subsystems.Arm.Commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.Constants.Motors;
-import frc.robot.subsystems.Arm.Gripper;
+import frc.robot.subsystems.Arm.Arm;
 
 public class GripperOpen extends CommandBase {
-  private final Gripper gripper;
+  private final Arm arm;
 
   /**
    * Creates a new GripperOpen command. This command will open the gripper of your robot while a button is pressed.
    *
-   * @param gripper The gripper subsystem on which this command will run
+   * @param arm The subsystem this command will run on.
    */
-  public GripperOpen(Gripper gripper) {
-    this.gripper = gripper;
-    addRequirements(gripper);
+  public GripperOpen(Arm arm) {
+    this.arm = arm;
+    addRequirements(arm);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs the command while it is scheduled.
+  /** Called every time the scheduler runs the command while it is scheduled. */
   @Override
   public void execute() {
-    gripper.setAngle(gripper.getAngle() - Motors.INCREMENT);
+    arm.setGripperAngle(arm.getGripperAngle() - Motors.INCREMENT);
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
+  /** Returns true when the command should end. */
   @Override
   public boolean isFinished() {
     return false;

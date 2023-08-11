@@ -15,33 +15,20 @@ public class ArmDown extends CommandBase {
   /**
    * Creates a new ArmDown command. This command will move the arm of your robot down while a button is pressed.
    *
-   * @param arm The arm subsystem on which this command will run.
+   * @param arm The subsystem this command will run on.
    */
   public ArmDown(Arm arm) {
     this.arm = arm;
     addRequirements(arm);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs the command while it is scheduled.
+  /** Called every time the scheduler runs the command while it is scheduled. */
   @Override
   public void execute() {
-    double angle = arm.getAngle();
-    if(angle + Motors.INCREMENT > 90) {
-      arm.setAngle(angle);
-    } else {
-      arm.setAngle(arm.getAngle() + Motors.INCREMENT);
-    }
+    arm.setArmAngle(arm.getArmAngle() + Motors.INCREMENT);
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
+  /** Returns true when the command should end. */
   @Override
   public boolean isFinished() {
     return false;
