@@ -18,11 +18,13 @@ public class Robot extends TimedRobot {
   private Command autonomousCommand;
   private Command teleopCommand;
 
-  /** This function is run when the robot is first started up and should be used for any initialization code. */
+  /** This function is run when the robot is first started. */
   @Override
   public void robotInit() {
     // Creates our RobotContainer.
     RobotContainer robotContainer = new RobotContainer();
+
+    // Gets commands from the RobotContainer class.
     autonomousCommand = robotContainer.getAutonomousCommand();
     teleopCommand = robotContainer.getTeleopCommand();
   }
@@ -46,13 +48,13 @@ public class Robot extends TimedRobot {
     autonomousCommand.cancel();
   }
 
-  /** This function is called once when the autonomous mode is initially started. */
+  /** This function is called once when the teleop mode is initially started. */
   @Override
   public void teleopInit() {
     teleopCommand.schedule();
   }
 
-  /** This function is called once when the autonomous mode is exited. */
+  /** This function is called once when the teleop mode is exited. */
   @Override
   public void teleopExit() {
     teleopCommand.cancel();
