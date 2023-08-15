@@ -35,6 +35,7 @@ package frc.robot;
  *     <ul>
  *         <li> CountsPerRevolution
  *         <li> WheelDiameterInch
+ *         <li> InchPerDegree
  *     </ul>
  *     <li> Encoders
  *     <ul>
