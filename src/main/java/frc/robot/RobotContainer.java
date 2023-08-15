@@ -89,6 +89,6 @@ public class RobotContainer {
    * @return The command to run in teleop.
    */
   public Command getTeleopCommand() {
-    return new ArcadeDrive(drivetrain, () -> -snesController.getRawAxis(1), () -> -snesController.getRawAxis(0));
+    return new ArcadeDrive(drivetrain, () -> -snesController.getYAxis(), () -> -snesController.getXAxis());
   }
 }

@@ -9,24 +9,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm.Arm;
 
 public class WristDegrees extends CommandBase {
-  private final double degrees;
   private final Arm arm;
+  private final double degrees;
 
   /**
-   * Creates a new WristDegrees command. This command will set the wrist of your robot to a desired number of degrees.
+   * Creates a new WristDegrees command. This command will set the wrist servo of your robot to a desired number of degrees.
    *
-   * @param degrees The number of degrees the wrist will be set to.
-   * @param arm The arm subsystem on which this command will run.
+   * @param arm The subsystem this command will run on.
+   * @param degrees The number of degrees that the wrist will be set to.
    */
-  public WristDegrees(double degrees, Arm arm) {
-    this.degrees = degrees;
+  public WristDegrees(Arm arm, double degrees) {
     this.arm = arm;
+    this.degrees = degrees;
     addRequirements(arm);
   }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -34,14 +30,9 @@ public class WristDegrees extends CommandBase {
     arm.setWristAngle(degrees);
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // Compare distance travelled from start to desired distance
     return arm.getWristAngle() == degrees;
   }
 }

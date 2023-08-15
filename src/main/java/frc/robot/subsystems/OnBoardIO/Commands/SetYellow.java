@@ -29,10 +29,6 @@ public class SetYellow extends CommandBase {
     onboardIO.setYellowLed(state);
   }
 
-  /** This function is called once the command ends or is interrupted. */
-  @Override
-  public void end(boolean interrupted) {}
-
   /** This function returns true when the command should end. */
   @Override
   public boolean isFinished() {

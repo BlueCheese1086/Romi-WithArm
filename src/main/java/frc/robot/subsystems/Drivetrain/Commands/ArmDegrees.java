@@ -9,34 +9,26 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm.Arm;
 
 public class ArmDegrees extends CommandBase {
-  private final double degrees;
   private final Arm arm;
+  private final double degrees;
 
   /**
-   * Creates a new DriveDistance command. This command will drive your your robot for a desired number of inches at a desired speed.
+   * Creates a new ArmDegrees command. This command will set the arm servo on your robot to a desired number of degrees.
    *
+   * @param arm The subsystem this command will run on.
    * @param degrees The number of degrees that the arm will be set to.
-   * @param arm The arm subsystem on which this command will run.
    */
-  public ArmDegrees(double degrees, Arm arm) {
-    this.degrees = degrees;
+  public ArmDegrees(Arm arm, double degrees) {
     this.arm = arm;
+    this.degrees = degrees;
     addRequirements(arm);
   }
-
-  /** Called when the command is initially scheduled. */
-  @Override
-  public void initialize() {}
 
   /** Called every time the scheduler runs while the command is scheduled. */
   @Override
   public void execute() {
     arm.setArmAngle(degrees);
   }
-
-  /** Called once the command ends or is interrupted. */
-  @Override
-  public void end(boolean interrupted) {}
 
   /** Returns true when the command should end. */
   @Override

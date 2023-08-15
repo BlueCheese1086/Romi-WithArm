@@ -75,12 +75,12 @@ public class OnBoardIO extends SubsystemBase {
     }
   }
 
-  /** Gets if the A button is pressed. */
+  /** Returns the state of the A button. */
   public boolean getButtonAPressed() {
     return buttonA.get();
   }
 
-  /** Gets if the B button is pressed. */
+  /** Returns the state of the B button. */
   public boolean getButtonBPressed() {
     if (buttonB != null) {
       return buttonB.get();
@@ -94,7 +94,7 @@ public class OnBoardIO extends SubsystemBase {
     return false;
   }
 
-  /** Gets if the C button is pressed. */
+  /** Returns the state of the C button. */
   public boolean getButtonCPressed() {
     if (buttonC != null) {
       return buttonC.get();

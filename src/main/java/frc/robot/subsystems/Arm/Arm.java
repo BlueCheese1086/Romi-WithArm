@@ -22,32 +22,32 @@ public class Arm extends SubsystemBase {
     wrist.setAngle(90);
   }
 
-  /** Sets the angle of the arm */
+  /** Sets the angle of the arm. */
   public void setArmAngle(double angle) {
     arm.setAngle(angle);
   }
 
-  /** @return The angle of the arm */
+  /** Returns the angle of the arm. */
   public double getArmAngle() {
     return arm.getAngle();
   }
 
-  /** Sets the angle of the gripper */
+  /** Sets the angle of the gripper. */
   public void setGripperAngle(double angle) {
     arm.setAngle(angle);
   }
 
-  /** @return The angle of the gripper */
+  /** Returns the angle of the gripper. */
   public double getGripperAngle() {
     return arm.getAngle();
   }
 
-  /** Sets the angle of the wrist */
+  /** Sets the angle of the wrist. */
   public void setWristAngle(double angle) {
     wrist.setAngle(angle);
   }
 
-  /** @return The angle of the wrist */
+  /** Returns the angle of the wrist. */
   public double getWristAngle() {
     return wrist.getAngle();
   }

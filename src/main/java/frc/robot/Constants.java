@@ -69,8 +69,9 @@ public final class Constants {
     }
 
     public final class Specs {
-        private static final double CountsPerRevolution = 1440.0;
-        private static final double WheelDiameterInch = 2.75591;
+        public static final double CountsPerRevolution = 1440.0;
+        public static final double WheelDiameterInch = 2.75591;
+        public static final double InchPerDegree = 0.0484416133891026; // Just wanna be accurate...
     }
 
     public final class Encoders {

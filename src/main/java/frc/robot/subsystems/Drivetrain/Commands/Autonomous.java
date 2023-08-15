@@ -11,21 +11,21 @@ import frc.robot.subsystems.Drivetrain.Drivetrain;
 
 public class Autonomous extends SequentialCommandGroup {
   /**
-   * Creates a new Autonomous Drive based on distance.
+   * Creates a new Autonomous drive.
    *
    * @param drivetrain The drivetrain subsystem to use in the commands below.
    * @param arm The arm subsystem to use in the commands below.
    */
   public Autonomous(Drivetrain drivetrain, Arm arm) {
     addCommands(
-      new DriveDistance(-1, 10, drivetrain),
-      new TurnDegrees(-1, 180, drivetrain),
-      new DriveDistance(-1, 10, drivetrain),
-      new TurnDegrees(1, 180, drivetrain),
-      new ArmDegrees(170, arm),
-      new GripperDegrees(15, arm),
-      new DriveDistance(1, 6, drivetrain),
-      new GripperDegrees(90, arm)
+      new DriveDistance(drivetrain, -1, 10),
+      new TurnDegrees(drivetrain, -1, 180),
+      new DriveDistance(drivetrain, -1, 10),
+      new TurnDegrees(drivetrain, 1, 180),
+      new ArmDegrees(arm, 170),
+      new GripperDegrees(arm, 15),
+      new DriveDistance(drivetrain, 1, 6),
+      new GripperDegrees(arm, 90)
     );
   }
 }

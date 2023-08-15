@@ -9,18 +9,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm.Arm;
 
 public class GripperDegrees extends CommandBase {
-  private final double degrees;
   private final Arm arm;
+  private final double degrees;
 
   /**
-   * Creates a new GripperDegrees command. This command will open or close the gripper for a desired number of degrees.
+   * Creates a new GripperDegrees command. This command will set the gripper servo on your robot to a desired number of degrees.
    *
-   * @param degrees The number of degrees the gripper will move.
-   * @param arm The arm subsystem on which this command will run.
+   * @param arm The subsystem this command will run on.
+   * @param degrees The number of degrees that the gripper will be set to.
    */
-  public GripperDegrees(double degrees, Arm arm) {
-    this.degrees = degrees;
+  public GripperDegrees(Arm arm, double degrees) {
     this.arm = arm;
+    this.degrees = degrees;
     addRequirements(arm);
   }
 
