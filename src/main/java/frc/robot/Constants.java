@@ -35,6 +35,7 @@ package frc.robot;
  *     <ul>
  *         <li> CountsPerRevolution
  *         <li> WheelDiameterInch
+ *         <li> InchPerDegree
  *     </ul>
  *     <li> Encoders
  *     <ul>
@@ -50,12 +51,12 @@ public final class Constants {
         public static final int CBUTTON = 2;
         public static final int GREENLED = 1;
         public static final int GRIPPERSERVO = 3;
-        public static final int LEFTENCODERA = 4;
-        public static final int LEFTENCODERB = 5;
+        public static final int LEFTAENCODER = 4;
+        public static final int LEFTBENCODER = 5;
         public static final int LEFTMOTOR = 0;
         public static final int REDLED = 2;
-        public static final int RIGHTENCODERA = 6;
-        public static final int RIGHTENCODERB = 7;
+        public static final int RIGHTAENCODER = 6;
+        public static final int RIGHTBENCODER = 7;
         public static final int RIGHTMOTOR = 1;
         public static final int WRISTSERVO = 4;
         public static final int YELLOWLED = 3;
@@ -69,8 +70,9 @@ public final class Constants {
     }
 
     public final class Specs {
-        private static final double CountsPerRevolution = 1440.0;
-        private static final double WheelDiameterInch = 2.75591;
+        public static final double CountsPerRevolution = 1440.0;
+        public static final double WheelDiameterInch = 2.75591;
+        public static final double InchPerDegree = 0.0484416133891026; // Just wanna be accurate...
     }
 
     public final class Encoders {

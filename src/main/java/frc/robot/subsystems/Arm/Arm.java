@@ -10,25 +10,45 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RobotMap;
 
 public class Arm extends SubsystemBase {
-  // Creates servo
+  // Creates servos
   private final Servo arm = new Servo(RobotMap.ARMSERVO);
+  private final Servo gripper = new Servo(RobotMap.GRIPPERSERVO);
+  private final Servo wrist = new Servo(RobotMap.WRISTSERVO);
 
   /** Creates a new Arm. */
   public Arm() {
     arm.setAngle(90);
+    gripper.setAngle(90);
+    wrist.setAngle(90);
   }
 
-  /** Sets the angle of the arm */
-  public void setAngle(double angle) {
+  /** Sets the angle of the arm. */
+  public void setArmAngle(double angle) {
     arm.setAngle(angle);
   }
 
-  /** @return The current angle of the arm */
-  public double getAngle() {
+  /** Returns the angle of the arm. */
+  public double getArmAngle() {
     return arm.getAngle();
   }
 
-  /** This method will be called once per scheduler run */
-  @Override
-  public void periodic() {}
+  /** Sets the angle of the gripper. */
+  public void setGripperAngle(double angle) {
+    arm.setAngle(angle);
+  }
+
+  /** Returns the angle of the gripper. */
+  public double getGripperAngle() {
+    return arm.getAngle();
+  }
+
+  /** Sets the angle of the wrist. */
+  public void setWristAngle(double angle) {
+    wrist.setAngle(angle);
+  }
+
+  /** Returns the angle of the wrist. */
+  public double getWristAngle() {
+    return wrist.getAngle();
+  }
 }
