@@ -4,12 +4,12 @@
 
 package frc.robot.subsystems.Drivetrain.Commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.Constants.Specs;
 import frc.robot.subsystems.Drivetrain.Drivetrain;
 
-public class TurnDegrees extends CommandBase {
+public class TurnDegrees extends Command {
   private final Drivetrain drivetrain;
   private final double speed;
   private final double degrees;

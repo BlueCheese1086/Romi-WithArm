@@ -4,11 +4,11 @@
 
 package frc.robot.subsystems.OnBoardIO.Commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.subsystems.OnBoardIO.OnBoardIO;
 
-public class SetGreen extends CommandBase {
+public class SetGreen extends Command {
   private final OnBoardIO onboardIO;
   private final boolean state;
 

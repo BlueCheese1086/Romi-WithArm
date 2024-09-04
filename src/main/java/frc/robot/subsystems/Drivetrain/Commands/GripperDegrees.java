@@ -4,11 +4,11 @@
 
 package frc.robot.subsystems.Drivetrain.Commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.subsystems.Arm.Arm;
 
-public class GripperDegrees extends CommandBase {
+public class GripperDegrees extends Command {
   private final Arm arm;
   private final double degrees;
 
