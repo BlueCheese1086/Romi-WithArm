@@ -6,11 +6,11 @@ package frc.robot.subsystems.Drivetrain.Commands;
 
 import java.util.function.Supplier;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.subsystems.Drivetrain.Drivetrain;
 
-public class ArcadeDrive extends CommandBase {
+public class ArcadeDrive extends Command {
   private final Drivetrain drivetrain;
   private final Supplier<Double> xaxisSpeedSupplier;
   private final Supplier<Double> zaxisRotateSupplier;
